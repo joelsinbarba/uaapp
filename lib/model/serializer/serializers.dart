@@ -11,7 +11,7 @@ import 'package:uaapp/model/models.dart';
 part 'serializers.g.dart';
 
 @SerializersFor(
-    const [Response, Semestre, Curso, Examen, Evento, EventoResponse])
+    const [Response, Semestre, Curso, Examen, Evento, EventoResponse,LoginResponse])
 final Serializers serializers =
     (_$serializers.toBuilder()..addPlugin(StandardJsonPlugin())).build();
 

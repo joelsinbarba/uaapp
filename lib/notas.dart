@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:uaapp/model/models.dart';
+import 'package:uaapp/ui/ecampus_icons.dart';
 
 class ExamenesPage extends StatelessWidget {
   final Curso curso;
@@ -37,11 +38,6 @@ class ExamenesPage extends StatelessWidget {
                     return Calificacion(curso.examenes[index]);
                   },
                 ),
-                // Calificacion("PRIMER PARCIAL", DateTime.now(), "73"),
-                /*  Calificacion("SEGUNDO PARCIAL", DateTime.now(), "52"),
-                  Calificacion("TERCER PARCIAL", DateTime.now(), "84"), */
-               // PuntosNecesarios("52"),
-                // Calificacion("FINAL", DateTime.now(), "90"),
                 SizedBox(
                   height: 50,
                 ),
@@ -63,11 +59,17 @@ class Calificacion extends StatelessWidget {
   Widget build(BuildContext context) {
     String titulo = '';
     String fecha = '';
-    String nota = examen.fechaExamen;
+    String nota = '...';
 
     try {
       List<String> lista = examen.fechaExamen.split("-");
+      print(lista);
+      print('Lenght is ' + lista.length.toString());
+      print('This is: ' + examen.fechaExamen);
       fecha = lista[0].trim();
+      if(lista.length <= 1 || lista[1].trim() == '' )
+      nota = '...';
+      else
       nota = lista[1].trim();
     } catch (e) {}
 
@@ -89,6 +91,8 @@ class Calificacion extends StatelessWidget {
         titulo = 'Nota Final';
         if(examen.fechaExamen == ''){
           nota = '...';
+        }else{
+          nota =examen.fechaExamen;
         }
         break;
       default:
@@ -174,7 +178,7 @@ class BotonAtras extends StatelessWidget {
       margin: EdgeInsets.all(8),
       child: IconButton(
         icon: Icon(
-          const IconData(0xe804, fontFamily: "Ecampus"),
+           Ecampus.back,
           color: Colors.black,
           size: 18,
         ),

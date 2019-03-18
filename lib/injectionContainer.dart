@@ -1,5 +1,6 @@
 import 'package:kiwi/kiwi.dart' as kiwi;
 import 'package:http/http.dart' as http;
+import 'package:uaapp/bloc/login/login_bloc.dart';
 import 'package:uaapp/bloc/semestre/semestreBloc.dart';
 import 'package:uaapp/bloc/evento/eventoBloc.dart';
 import 'package:uaapp/network/dataSource.dart';
@@ -11,5 +12,6 @@ void initKiwi() {
     ..registerFactory((c) => DataSource(c.resolve()))
     ..registerFactory((c) => SearchRepository(c.resolve()))
     ..registerFactory((c) => SemestreBloc(c.resolve()))
-    ..registerFactory((c) => EventoBloc(c.resolve()));
+    ..registerFactory((c) => EventoBloc(c.resolve()))
+    ..registerFactory((c) => LoginBloc(c.resolve()));
 }

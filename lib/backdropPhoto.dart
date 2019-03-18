@@ -3,17 +3,19 @@ import 'dart:ui' as ui;
 //import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:uaapp/scrollEffects.dart';
-//import 'package:inkino/ui/event_details/event_details_scroll_effects.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:meta/meta.dart';
 
 class EventBackdropPhoto extends StatelessWidget {
   const EventBackdropPhoto({
     //@required this.event,
     @required this.scrollEffects,
+     @required this.image,
   });
 
   //final Event event;
   final EventDetailsScrollEffects scrollEffects;
+  final String image;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +23,7 @@ class EventBackdropPhoto extends StatelessWidget {
       child: Stack(
         children: [
           
-          _BackdropPhoto(scrollEffects),
+          _BackdropPhoto(scrollEffects,image),
           _BlurOverlay(scrollEffects),
           _InsetShadow(),
         
@@ -32,51 +34,19 @@ class EventBackdropPhoto extends StatelessWidget {
 }
 
 class _BackdropPhoto extends StatelessWidget {
-  _BackdropPhoto(/* this.event, */ this.scrollEffects);
+  _BackdropPhoto(/* this.event, */ this.scrollEffects, this.image);
   //final Event event;
   final EventDetailsScrollEffects scrollEffects;
+  final String image;
 
   @override
   Widget build(BuildContext context) {
     return Stack(
       alignment: Alignment.center,
       children: [
-        _PlaceholderBackground(scrollEffects.backdropHeight),
-        Image(image: AssetImage('assets/images/arbol.png'),height: scrollEffects.backdropHeight, fit: BoxFit.cover, width: MediaQuery.of(context).size.width,),
+        Image(image: AssetImage(image),height: scrollEffects.backdropHeight, fit: BoxFit.cover, width: MediaQuery.of(context).size.width,),
         //_BackdropImage( scrollEffects),
       ],
-    );
-  }
-}
-
-class _PlaceholderBackground extends StatelessWidget {
-  _PlaceholderBackground(this.height);
-  final double height;
-
-  @override
-  Widget build(BuildContext context) {
-    final decoration = const BoxDecoration(
-      gradient: LinearGradient(
-        begin: Alignment.bottomCenter,
-        end: Alignment.topCenter,
-        colors: [
-          Color(0xFF222222),
-          Color(0xFF424242),
-        ],
-      ),
-    );
-
-    return Container(
-      width: MediaQuery.of(context).size.width,
-      height: height,
-      decoration: decoration,
-      child: const Center(
-        child: Icon(
-          Icons.theaters,
-          color: Colors.white30,
-          size: 96.0,
-        ),
-      ),
     );
   }
 }

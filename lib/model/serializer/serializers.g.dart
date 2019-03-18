@@ -11,6 +11,7 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(Evento.serializer)
       ..add(EventoResponse.serializer)
       ..add(Examen.serializer)
+      ..add(LoginResponse.serializer)
       ..add(Response.serializer)
       ..add(Semestre.serializer)
       ..addBuilderFactory(

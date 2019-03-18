@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:uaapp/bloc/semestre/semestreEvent.dart';
 import 'package:uaapp/bloc/semestre/semestreState.dart';
 import 'package:uaapp/network/repository.dart';
+import 'package:uaapp/ui/library.dart';
 
 class SemestreBloc extends Bloc<SemestreEvent, SemestreState> {
   final SearchRepository _searchRepository;
@@ -14,7 +15,7 @@ class SemestreBloc extends Bloc<SemestreEvent, SemestreState> {
 
   void onSearchInitiated() {
     dispatch(SemestreInitiated());
-    year = 2019;
+    year = DateTime.now().year;
   }
 
   void onLoadMore() {
@@ -38,7 +39,7 @@ class SemestreBloc extends Bloc<SemestreEvent, SemestreState> {
           year--;
         }
 
-        final searchResult = await _searchRepository.searchItems(year, 70262);
+        final searchResult = await _searchRepository.searchItems(year, globalUserId);
 
         //print(searchResult);
         yield SemestreState.success(currentState.response + searchResult);
@@ -52,7 +53,7 @@ class SemestreBloc extends Bloc<SemestreEvent, SemestreState> {
     yield SemestreState.loading();
 
     try {
-      var searchResult = await _searchRepository.searchItems(year, 70262);
+      var searchResult = await _searchRepository.searchItems(year, globalUserId);
       //print(searchResult);
       yield SemestreState.success(searchResult);
     } on NoSearchResultExeption catch (e) {

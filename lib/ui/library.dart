@@ -7,10 +7,12 @@ final colores = {
   'white': Color(0xFFF3F1F1),
 };
 
+String globalUserId;
+
 class UaaButton extends StatelessWidget {
   final String texto;
   final Function onpressed;
-  final Color backgroundColor, textColor, accentColor, splashColor;
+  final Color backgroundColor, textColor, accentColor, splashColor,highlightColor;
   final double elevation;
   final IconData icono;
 
@@ -20,13 +22,15 @@ class UaaButton extends StatelessWidget {
       this.accentColor,
       this.icono,
       this.splashColor,
-      this.elevation});
+      this.elevation,
+      this.highlightColor});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.all(10.0),
+      margin: EdgeInsets.all(5.0),
       child: Row(
+        mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           RawMaterialButton(
@@ -35,9 +39,10 @@ class UaaButton extends StatelessWidget {
             fillColor:
                 backgroundColor != null ? backgroundColor : colores['red'],
             splashColor: splashColor != null ? splashColor : Colors.black,
+            highlightColor: highlightColor != null ? highlightColor :Colors.transparent,
             child: IntrinsicWidth(
               child: Column(
-                mainAxisSize: MainAxisSize.max,
+                mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
                   Container(
                     padding: EdgeInsets.symmetric(vertical: 8, horizontal: 18),
@@ -52,7 +57,7 @@ class UaaButton extends StatelessWidget {
                                     ? textColor
                                     : Colors.white,
                                 fontFamily: 'Montserrat',
-                                fontWeight: FontWeight.w700),
+                                fontWeight: FontWeight.w600),
                           ),
                           icono != null
                               ? Container(
@@ -88,7 +93,10 @@ class UaaButton extends StatelessWidget {
 class UaaInputField extends StatelessWidget {
   final IconData icono;
   final String hint;
-  UaaInputField(this.icono, this.hint);
+  final TextEditingController textEditingController;
+  final bool obscureText;
+  UaaInputField(this.textEditingController, this.icono, this.hint,
+      {this.obscureText = false});
 
   @override
   Widget build(BuildContext context) {
@@ -100,14 +108,10 @@ class UaaInputField extends StatelessWidget {
           decoration: BoxDecoration(
             shape: BoxShape.rectangle,
             color: Colors.white,
-            /* border:  Border.all(
-                                  color: Colors.black,
-                                  width: 1.0,
-                                ), */
           ),
           child: TextFormField(
-            obscureText: true,
-            //textAlign: TextAlign.center,
+            controller: textEditingController,
+            obscureText: obscureText,
             decoration: InputDecoration(
               prefixIcon: Icon(
                 icono,
@@ -196,9 +200,9 @@ class EventoCard extends StatelessWidget {
     return Container(
       margin: EdgeInsets.only(right: 8),
       child: Material(
-        color: Color(0xFFFCFCFC),
+        color: Color(0xFFEFEFF4),
         borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(10), topRight: Radius.circular(10)),
+            topLeft: Radius.circular(15), topRight: Radius.circular(15)),
         elevation: 2,
         child: Container(
           height: 40,
@@ -232,8 +236,15 @@ class EventoCard extends StatelessWidget {
                 ),
               ),
               Container(
-                /* color: Colors.teal, */
-                margin: EdgeInsets.all(12),
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(10),
+                      topRight: Radius.circular(10)),
+                ),
+                margin: EdgeInsets.all(6),
+                padding: EdgeInsets.all(8),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[

@@ -6,8 +6,6 @@ import 'package:uaapp/model/serializer/serializers.dart';
 
 class DataSource {
   final http.Client client;
-  /*  final String _url =
-      'http://service.uaa.edu.py/curso/GetSemestresPorAlumnoAnioV2?anio=2018&id=70262&mostrar_horario=N&tipo_persona=A'; */
 
   DataSource(this.client);
 
@@ -16,14 +14,12 @@ class DataSource {
         'http://service.uaa.edu.py/curso/GetSemestresPorAlumnoAnioV2?anio=$anio&id=$id&mostrar_horario=N&tipo_persona=A';
     final urlEncoded = Uri.encodeFull(_url);
     final response =
-        await client.post(urlEncoded, headers: {'Accept': 'application/json'});
+        await client.get(urlEncoded, headers: {'Accept': 'application/json'});
     if (response.statusCode == 200) {
       List<dynamic> res = json.decode(response.body);
       if (res.length < 1) {
         print('Houston problem');
-        res..add({
-          "emptyYear": int.parse(anio)
-        });
+        res..add({"emptyYear": int.parse(anio)});
       }
       List<Semestre> tasks = res
           .map<Semestre>((dynamic map) =>
@@ -49,7 +45,7 @@ class DataSource {
         'http://service.uaa.edu.py/noticiaEvento/GetEventosDia/?personaid=$alumnoid&tipo_persona=A';
     final urlEncoded = Uri.encodeFull(_url);
     final response =
-        await client.post(urlEncoded, headers: {'Accept': 'application/json'});
+        await client.get(urlEncoded, headers: {'Accept': 'application/json'});
     if (response.statusCode == 200) {
       List<dynamic> res = json.decode(response.body);
       List<Evento> tasks = res
@@ -60,6 +56,31 @@ class DataSource {
     } else {
       print('Ocurrió un error');
       throw SemestreError('Error!');
+    }
+  }
+
+  Future<LoginResponse> login(String user, String password) async {
+    var _url = 'http://service.uaa.edu.py/Acceso/LoginV2';
+    final urlEncoded = Uri.encodeFull(_url);
+
+    try {
+      final response = await client
+          .post(urlEncoded,
+              headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+              },
+              body: json.encode({'UserName': user, 'Password': password}))
+          .timeout(const Duration(seconds: 10));
+      if (response.statusCode == 200)
+        return LoginResponse.fromJson(response.body);
+      else {
+        print('ERROR: NO RESULT');
+        return LoginResponse();
+        /* throw SemestreError('ERROR: NO RESPONSE WHATSOEVER!'); */
+      }
+    } catch (SocketException) {
+        return LoginResponse();
     }
   }
 }

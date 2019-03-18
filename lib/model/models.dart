@@ -5,3 +5,4 @@ export './cursos/errores.dart';
 export './cursos/response.dart';
 export 'eventos/evento.dart';
 export 'eventos/evento_response.dart';
+export 'login/login_response.dart';

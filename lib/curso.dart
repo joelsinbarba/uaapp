@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:uaapp/model/models.dart';
 import 'package:uaapp/notas.dart';
+import 'package:uaapp/ui/ecampus_icons.dart';
 import 'package:uaapp/ui/library.dart';
 
 class CursoPage extends StatelessWidget {
@@ -28,6 +29,10 @@ class CursoPage extends StatelessWidget {
       // print('ERROR' + e.);
     }
 
+    void _onSearchButtonPressed() {
+      Navigator.pop(context);
+    }
+
     return Scaffold(
       body: Container(
         height: double.infinity,
@@ -49,7 +54,7 @@ class CursoPage extends StatelessWidget {
                   margin: EdgeInsets.all(8),
                   child: IconButton(
                     icon: Icon(
-                      const IconData(0xe804, fontFamily: "Ecampus"),
+                      Ecampus.back,
                       color: Colors.black,
                       size: 18,
                     ),
@@ -75,61 +80,71 @@ class CursoPage extends StatelessWidget {
                 finalizado ? FinalizadoBanner() : Container(),
                 Container(
                   margin: EdgeInsets.symmetric(vertical: 20),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
-                      Column(
-                        children: <Widget>[
-                          Text(
-                            "CÓDIGO",
-                            style: TextStyle(
-                                fontFamily: 'Montserrat',
-                                fontWeight: FontWeight.w800,
-                                fontSize: 18),
+                  child: Center(
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        Container(
+                          width: 120,
+                          child: Column(
+                            children: <Widget>[
+                              Text(
+                                "CÓDIGO",
+                                style: TextStyle(
+                                    fontFamily: 'Montserrat',
+                                    fontWeight: FontWeight.w800,
+                                    fontSize: 18),
+                              ),
+                              SizedBox(
+                                height: 20,
+                              ),
+                              Text(
+                                curso.nroCurso.toString(),
+                                style: TextStyle(
+                                    fontFamily: 'Montserrat',
+                                    fontSize: 34,
+                                    letterSpacing: 4,
+                                    fontWeight: FontWeight.w900),
+                              )
+                            ],
                           ),
-                          SizedBox(
-                            height: 20,
+                        ),
+                        Container(
+                          color: Color(0XFFFA982E),
+                          height: 100,
+                          width: 4,
+                          margin: EdgeInsets.symmetric(horizontal: 20),
+                        ),
+                        Container(
+                          //color: Colors.red,
+                          width: 120,
+                          child: Column(
+                            children: <Widget>[
+                              Text(
+                                "AULA",
+                                style: TextStyle(
+                                    fontFamily: 'Montserrat',
+                                    fontWeight: FontWeight.w800,
+                                    fontSize: 18),
+                              ),
+                              SizedBox(
+                                height: 20,
+                              ),
+                              Text(
+                                curso.nroAula.toString(),
+                                style: TextStyle(
+                                    fontFamily: 'Montserrat',
+                                    fontSize: 34,
+                                    letterSpacing: 4,
+                                    fontWeight: FontWeight.w900),
+                              )
+                            ],
                           ),
-                          Text(
-                            curso.nroCurso.toString(),
-                            style: TextStyle(
-                                fontFamily: 'Montserrat',
-                                fontSize: 34,
-                                letterSpacing: 4,
-                                fontWeight: FontWeight.w900),
-                          )
-                        ],
-                      ),
-                      Container(
-                        color: Color(0XFFFA982E),
-                        height: 100,
-                        width: 4,
-                        margin: EdgeInsets.symmetric(horizontal: 40),
-                      ),
-                      Column(
-                        children: <Widget>[
-                          Text(
-                            "AULA",
-                            style: TextStyle(
-                                fontFamily: 'Montserrat',
-                                fontWeight: FontWeight.w800,
-                                fontSize: 18),
-                          ),
-                          SizedBox(
-                            height: 20,
-                          ),
-                          Text(
-                            curso.nroAula.toString(),
-                            style: TextStyle(
-                                fontFamily: 'Montserrat',
-                                fontSize: 34,
-                                letterSpacing: 4,
-                                fontWeight: FontWeight.w900),
-                          )
-                        ],
-                      ),
-                    ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
                 Container(
@@ -167,20 +182,22 @@ class CursoPage extends StatelessWidget {
                 SizedBox(
                   height: 20,
                 ),
-                UaaButton(
-                  'EXAMENES',
-                  () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => ExamenesPage(curso: curso),
-                      ),
-                    );
-                  },
-                  elevation: 0,
-                  accentColor: Colors.transparent,
-                  backgroundColor: Color(0XFFFA982E),
-                  icono: IconData(0xe805, fontFamily: "Ecampus"),
+                Center(
+                  child: UaaButton(
+                    'EXAMENES',
+                    () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ExamenesPage(curso: curso),
+                        ),
+                      );
+                    },
+                    elevation: 0,
+                    accentColor: Colors.transparent,
+                    backgroundColor: Color(0XFFFA982E),
+                    icono:  Ecampus.forward,
+                  ),
                 ),
                 Container(
                   margin: EdgeInsets.only(left: 20, bottom: 10, top: 20),
