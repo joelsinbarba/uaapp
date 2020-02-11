@@ -1,5 +1,5 @@
 # Uaapp
-App developed to learn about Flutter. Chose to make an app for my university (Universidad Autonoma de Asuncion" since they do not provide an iOS application for students.
+App developed to learn about Flutter. Chose to make an app for my university (Universidad Autonoma de Asuncion) since they do not provide an iOS application for students.
 
 ## Demo
 <img src="/readme/demo.gif" width="200"/>
