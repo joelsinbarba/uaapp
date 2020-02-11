@@ -1,16 +1,12 @@
-# uaapp
+# Uaapp
+App developed to learn about Flutter. Chose to make an app for my university since they do not provide an iOS application for students.
 
-A new Flutter project.
+## Demo
+<img src="/readme/demo.gif" width="200"/>
 
-## Getting Started
+Developed January-February 2018
+Most of the API calls were "hacked" from an earlier API version, so most features no longer work.
+You will also need student credentials to log in.
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.io/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.io/docs/cookbook)
-
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.io/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+## Demo Video (Youtube)
+[![Demo Video](https://img.youtube.com/vi/pMrCJcqUxyg/maxresdefault.jpg)](https://youtu.be/pMrCJcqUxyg)
