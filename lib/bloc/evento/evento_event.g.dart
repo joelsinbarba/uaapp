@@ -7,13 +7,13 @@ part of evento_event;
 // **************************************************************************
 
 class _$EventoInitiated extends EventoInitiated {
-  factory _$EventoInitiated([void updates(EventoInitiatedBuilder b)]) =>
+  factory _$EventoInitiated([void Function(EventoInitiatedBuilder) updates]) =>
       (new EventoInitiatedBuilder()..update(updates)).build();
 
   _$EventoInitiated._() : super._();
 
   @override
-  EventoInitiated rebuild(void updates(EventoInitiatedBuilder b)) =>
+  EventoInitiated rebuild(void Function(EventoInitiatedBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
@@ -52,7 +52,7 @@ class EventoInitiatedBuilder
   }
 
   @override
-  void update(void updates(EventoInitiatedBuilder b)) {
+  void update(void Function(EventoInitiatedBuilder) updates) {
     if (updates != null) updates(this);
   }
 

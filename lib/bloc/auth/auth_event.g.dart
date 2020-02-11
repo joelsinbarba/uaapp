@@ -7,13 +7,13 @@ part of auth_event;
 // **************************************************************************
 
 class _$AuthInitiated extends AuthInitiated {
-  factory _$AuthInitiated([void updates(AuthInitiatedBuilder b)]) =>
+  factory _$AuthInitiated([void Function(AuthInitiatedBuilder) updates]) =>
       (new AuthInitiatedBuilder()..update(updates)).build();
 
   _$AuthInitiated._() : super._();
 
   @override
-  AuthInitiated rebuild(void updates(AuthInitiatedBuilder b)) =>
+  AuthInitiated rebuild(void Function(AuthInitiatedBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
@@ -51,7 +51,7 @@ class AuthInitiatedBuilder
   }
 
   @override
-  void update(void updates(AuthInitiatedBuilder b)) {
+  void update(void Function(AuthInitiatedBuilder) updates) {
     if (updates != null) updates(this);
   }
 

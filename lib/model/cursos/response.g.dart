@@ -15,7 +15,7 @@ class _$ResponseSerializer implements StructuredSerializer<Response> {
   final String wireName = 'Response';
 
   @override
-  Iterable serialize(Serializers serializers, Response object,
+  Iterable<Object> serialize(Serializers serializers, Response object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object>[
       'semestre',
@@ -28,7 +28,7 @@ class _$ResponseSerializer implements StructuredSerializer<Response> {
   }
 
   @override
-  Response deserialize(Serializers serializers, Iterable serialized,
+  Response deserialize(Serializers serializers, Iterable<Object> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     final result = new ResponseBuilder();
 
@@ -40,8 +40,9 @@ class _$ResponseSerializer implements StructuredSerializer<Response> {
       switch (key) {
         case 'semestre':
           result.semestre.replace(serializers.deserialize(value,
-              specifiedType: const FullType(
-                  BuiltList, const [const FullType(Semestre)])) as BuiltList);
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(Semestre)]))
+              as BuiltList<dynamic>);
           break;
       }
     }
@@ -54,7 +55,7 @@ class _$Response extends Response {
   @override
   final BuiltList<Semestre> semestre;
 
-  factory _$Response([void updates(ResponseBuilder b)]) =>
+  factory _$Response([void Function(ResponseBuilder) updates]) =>
       (new ResponseBuilder()..update(updates)).build();
 
   _$Response._({this.semestre}) : super._() {
@@ -64,7 +65,7 @@ class _$Response extends Response {
   }
 
   @override
-  Response rebuild(void updates(ResponseBuilder b)) =>
+  Response rebuild(void Function(ResponseBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
@@ -115,7 +116,7 @@ class ResponseBuilder implements Builder<Response, ResponseBuilder> {
   }
 
   @override
-  void update(void updates(ResponseBuilder b)) {
+  void update(void Function(ResponseBuilder) updates) {
     if (updates != null) updates(this);
   }
 

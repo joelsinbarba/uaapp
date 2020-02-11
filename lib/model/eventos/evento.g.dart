@@ -15,7 +15,7 @@ class _$EventoSerializer implements StructuredSerializer<Evento> {
   final String wireName = 'Evento';
 
   @override
-  Iterable serialize(Serializers serializers, Evento object,
+  Iterable<Object> serialize(Serializers serializers, Evento object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object>[
       'nombreEvento',
@@ -31,12 +31,11 @@ class _$EventoSerializer implements StructuredSerializer<Evento> {
         ..add(serializers.serialize(object.nroAula,
             specifiedType: const FullType(int)));
     }
-
     return result;
   }
 
   @override
-  Evento deserialize(Serializers serializers, Iterable serialized,
+  Evento deserialize(Serializers serializers, Iterable<Object> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     final result = new EventoBuilder();
 
@@ -73,7 +72,7 @@ class _$Evento extends Evento {
   @override
   final String horaInicio;
 
-  factory _$Evento([void updates(EventoBuilder b)]) =>
+  factory _$Evento([void Function(EventoBuilder) updates]) =>
       (new EventoBuilder()..update(updates)).build();
 
   _$Evento._({this.nombreEvento, this.nroAula, this.horaInicio}) : super._() {
@@ -86,7 +85,7 @@ class _$Evento extends Evento {
   }
 
   @override
-  Evento rebuild(void updates(EventoBuilder b)) =>
+  Evento rebuild(void Function(EventoBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
@@ -153,7 +152,7 @@ class EventoBuilder implements Builder<Evento, EventoBuilder> {
   }
 
   @override
-  void update(void updates(EventoBuilder b)) {
+  void update(void Function(EventoBuilder) updates) {
     if (updates != null) updates(this);
   }
 

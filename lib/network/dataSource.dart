@@ -60,9 +60,8 @@ class DataSource {
   }
 
   Future<LoginResponse> login(String user, String password) async {
-    var _url = 'http://service.uaa.edu.py/Acceso/LoginV2';
+    var _url = 'http://service.uaa.edu.py/Acceso/Login_V0016';
     final urlEncoded = Uri.encodeFull(_url);
-
     try {
       final response = await client
           .post(urlEncoded,
@@ -70,8 +69,12 @@ class DataSource {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
               },
-              body: json.encode({'UserName': user, 'Password': password}))
+              body: json
+                  .encode({'TFSDFE5454ERER': user, 'JK654_SDRGSD': password}))
           .timeout(const Duration(seconds: 10));
+
+      Map mapRes = json.decode(response.body);
+      print('Response from server: $mapRes');
       if (response.statusCode == 200)
         return LoginResponse.fromJson(response.body);
       else {
@@ -80,7 +83,7 @@ class DataSource {
         /* throw SemestreError('ERROR: NO RESPONSE WHATSOEVER!'); */
       }
     } catch (SocketException) {
-        return LoginResponse();
+      return LoginResponse();
     }
   }
 }

@@ -20,7 +20,8 @@ abstract class LoginResponse
   @nullable
   String get email;
   @nullable
-  int get persona_id;
+  @BuiltValueField(wireName: 'access_ID_')
+  String get accessId;
 
   LoginResponse._();
 
@@ -32,6 +33,7 @@ abstract class LoginResponse
   }
 
   static LoginResponse fromJson(String jsonString) {
+    print("it is:" + jsonString);
     return serializers.deserializeWith(
         LoginResponse.serializer, json.decode(jsonString));
   }

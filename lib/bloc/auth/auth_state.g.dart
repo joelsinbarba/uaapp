@@ -12,7 +12,7 @@ class _$AuthState extends AuthState {
   @override
   final bool isLoading;
 
-  factory _$AuthState([void updates(AuthStateBuilder b)]) =>
+  factory _$AuthState([void Function(AuthStateBuilder) updates]) =>
       (new AuthStateBuilder()..update(updates)).build();
 
   _$AuthState._({this.loggedIn, this.isLoading}) : super._() {
@@ -25,7 +25,7 @@ class _$AuthState extends AuthState {
   }
 
   @override
-  AuthState rebuild(void updates(AuthStateBuilder b)) =>
+  AuthState rebuild(void Function(AuthStateBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
@@ -84,7 +84,7 @@ class AuthStateBuilder implements Builder<AuthState, AuthStateBuilder> {
   }
 
   @override
-  void update(void updates(AuthStateBuilder b)) {
+  void update(void Function(AuthStateBuilder) updates) {
     if (updates != null) updates(this);
   }
 

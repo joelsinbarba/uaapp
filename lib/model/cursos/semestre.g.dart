@@ -15,7 +15,7 @@ class _$SemestreSerializer implements StructuredSerializer<Semestre> {
   final String wireName = 'Semestre';
 
   @override
-  Iterable serialize(Serializers serializers, Semestre object,
+  Iterable<Object> serialize(Serializers serializers, Semestre object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object>[];
     if (object.semestreID != null) {
@@ -67,12 +67,11 @@ class _$SemestreSerializer implements StructuredSerializer<Semestre> {
         ..add(serializers.serialize(object.emptyYear,
             specifiedType: const FullType(int)));
     }
-
     return result;
   }
 
   @override
-  Semestre deserialize(Serializers serializers, Iterable serialized,
+  Semestre deserialize(Serializers serializers, Iterable<Object> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     final result = new SemestreBuilder();
 
@@ -110,7 +109,7 @@ class _$SemestreSerializer implements StructuredSerializer<Semestre> {
           result.cursos.replace(serializers.deserialize(value,
                   specifiedType:
                       const FullType(BuiltList, const [const FullType(Curso)]))
-              as BuiltList);
+              as BuiltList<dynamic>);
           break;
         case 'emptyYear':
           result.emptyYear = serializers.deserialize(value,
@@ -141,7 +140,7 @@ class _$Semestre extends Semestre {
   @override
   final int emptyYear;
 
-  factory _$Semestre([void updates(SemestreBuilder b)]) =>
+  factory _$Semestre([void Function(SemestreBuilder) updates]) =>
       (new SemestreBuilder()..update(updates)).build();
 
   _$Semestre._(
@@ -156,7 +155,7 @@ class _$Semestre extends Semestre {
       : super._();
 
   @override
-  Semestre rebuild(void updates(SemestreBuilder b)) =>
+  Semestre rebuild(void Function(SemestreBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
@@ -269,7 +268,7 @@ class SemestreBuilder implements Builder<Semestre, SemestreBuilder> {
   }
 
   @override
-  void update(void updates(SemestreBuilder b)) {
+  void update(void Function(SemestreBuilder) updates) {
     if (updates != null) updates(this);
   }
 

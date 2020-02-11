@@ -14,7 +14,7 @@ class _$LoginState extends LoginState {
   @override
   final LoginResponse response;
 
-  factory _$LoginState([void updates(LoginStateBuilder b)]) =>
+  factory _$LoginState([void Function(LoginStateBuilder) updates]) =>
       (new LoginStateBuilder()..update(updates)).build();
 
   _$LoginState._({this.isLoading, this.error, this.response}) : super._() {
@@ -27,7 +27,7 @@ class _$LoginState extends LoginState {
   }
 
   @override
-  LoginState rebuild(void updates(LoginStateBuilder b)) =>
+  LoginState rebuild(void Function(LoginStateBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
@@ -95,7 +95,7 @@ class LoginStateBuilder implements Builder<LoginState, LoginStateBuilder> {
   }
 
   @override
-  void update(void updates(LoginStateBuilder b)) {
+  void update(void Function(LoginStateBuilder) updates) {
     if (updates != null) updates(this);
   }
 

@@ -12,7 +12,11 @@ String globalUserId;
 class UaaButton extends StatelessWidget {
   final String texto;
   final Function onpressed;
-  final Color backgroundColor, textColor, accentColor, splashColor,highlightColor;
+  final Color backgroundColor,
+      textColor,
+      accentColor,
+      splashColor,
+      highlightColor;
   final double elevation;
   final IconData icono;
 
@@ -39,7 +43,8 @@ class UaaButton extends StatelessWidget {
             fillColor:
                 backgroundColor != null ? backgroundColor : colores['red'],
             splashColor: splashColor != null ? splashColor : Colors.black,
-            highlightColor: highlightColor != null ? highlightColor :Colors.transparent,
+            highlightColor:
+                highlightColor != null ? highlightColor : Colors.transparent,
             child: IntrinsicWidth(
               child: Column(
                 mainAxisSize: MainAxisSize.min,

@@ -12,7 +12,7 @@ class _$LoginInitiated extends LoginInitiated {
   @override
   final String password;
 
-  factory _$LoginInitiated([void updates(LoginInitiatedBuilder b)]) =>
+  factory _$LoginInitiated([void Function(LoginInitiatedBuilder) updates]) =>
       (new LoginInitiatedBuilder()..update(updates)).build();
 
   _$LoginInitiated._({this.user, this.password}) : super._() {
@@ -25,7 +25,7 @@ class _$LoginInitiated extends LoginInitiated {
   }
 
   @override
-  LoginInitiated rebuild(void updates(LoginInitiatedBuilder b)) =>
+  LoginInitiated rebuild(void Function(LoginInitiatedBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
@@ -86,7 +86,7 @@ class LoginInitiatedBuilder
   }
 
   @override
-  void update(void updates(LoginInitiatedBuilder b)) {
+  void update(void Function(LoginInitiatedBuilder) updates) {
     if (updates != null) updates(this);
   }
 
@@ -100,13 +100,13 @@ class LoginInitiatedBuilder
 }
 
 class _$LoginShowUp extends LoginShowUp {
-  factory _$LoginShowUp([void updates(LoginShowUpBuilder b)]) =>
+  factory _$LoginShowUp([void Function(LoginShowUpBuilder) updates]) =>
       (new LoginShowUpBuilder()..update(updates)).build();
 
   _$LoginShowUp._() : super._();
 
   @override
-  LoginShowUp rebuild(void updates(LoginShowUpBuilder b)) =>
+  LoginShowUp rebuild(void Function(LoginShowUpBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
@@ -143,7 +143,7 @@ class LoginShowUpBuilder implements Builder<LoginShowUp, LoginShowUpBuilder> {
   }
 
   @override
-  void update(void updates(LoginShowUpBuilder b)) {
+  void update(void Function(LoginShowUpBuilder) updates) {
     if (updates != null) updates(this);
   }
 

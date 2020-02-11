@@ -25,6 +25,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 void main() async {
   initKiwi();
+  WidgetsFlutterBinding.ensureInitialized();
   print('INICIANDO');
   final _storage = new FlutterSecureStorage();
   globalUserId = await _storage.read(key: 'userId');

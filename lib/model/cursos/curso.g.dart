@@ -15,7 +15,7 @@ class _$CursoSerializer implements StructuredSerializer<Curso> {
   final String wireName = 'Curso';
 
   @override
-  Iterable serialize(Serializers serializers, Curso object,
+  Iterable<Object> serialize(Serializers serializers, Curso object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object>[
       'cursoID',
@@ -55,12 +55,11 @@ class _$CursoSerializer implements StructuredSerializer<Curso> {
         ..add(serializers.serialize(object.fechaFin,
             specifiedType: const FullType(String)));
     }
-
     return result;
   }
 
   @override
-  Curso deserialize(Serializers serializers, Iterable serialized,
+  Curso deserialize(Serializers serializers, Iterable<Object> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     final result = new CursoBuilder();
 
@@ -106,7 +105,7 @@ class _$CursoSerializer implements StructuredSerializer<Curso> {
           result.examenes.replace(serializers.deserialize(value,
                   specifiedType:
                       const FullType(BuiltList, const [const FullType(Examen)]))
-              as BuiltList);
+              as BuiltList<dynamic>);
           break;
       }
     }
@@ -135,7 +134,7 @@ class _$Curso extends Curso {
   @override
   final BuiltList<Examen> examenes;
 
-  factory _$Curso([void updates(CursoBuilder b)]) =>
+  factory _$Curso([void Function(CursoBuilder) updates]) =>
       (new CursoBuilder()..update(updates)).build();
 
   _$Curso._(
@@ -170,7 +169,7 @@ class _$Curso extends Curso {
   }
 
   @override
-  Curso rebuild(void updates(CursoBuilder b)) =>
+  Curso rebuild(void Function(CursoBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
@@ -296,7 +295,7 @@ class CursoBuilder implements Builder<Curso, CursoBuilder> {
   }
 
   @override
-  void update(void updates(CursoBuilder b)) {
+  void update(void Function(CursoBuilder) updates) {
     if (updates != null) updates(this);
   }
 

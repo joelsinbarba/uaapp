@@ -18,7 +18,7 @@ class _$SemestreState extends SemestreState {
   @override
   final List<Semestre> response;
 
-  factory _$SemestreState([void updates(SemestreStateBuilder b)]) =>
+  factory _$SemestreState([void Function(SemestreStateBuilder) updates]) =>
       (new SemestreStateBuilder()..update(updates)).build();
 
   _$SemestreState._(
@@ -44,7 +44,7 @@ class _$SemestreState extends SemestreState {
   }
 
   @override
-  SemestreState rebuild(void updates(SemestreStateBuilder b)) =>
+  SemestreState rebuild(void Function(SemestreStateBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
@@ -132,7 +132,7 @@ class SemestreStateBuilder
   }
 
   @override
-  void update(void updates(SemestreStateBuilder b)) {
+  void update(void Function(SemestreStateBuilder) updates) {
     if (updates != null) updates(this);
   }
 

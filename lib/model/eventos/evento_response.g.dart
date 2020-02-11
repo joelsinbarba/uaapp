@@ -17,7 +17,7 @@ class _$EventoResponseSerializer
   final String wireName = 'EventoResponse';
 
   @override
-  Iterable serialize(Serializers serializers, EventoResponse object,
+  Iterable<Object> serialize(Serializers serializers, EventoResponse object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object>[
       'eventos',
@@ -30,7 +30,8 @@ class _$EventoResponseSerializer
   }
 
   @override
-  EventoResponse deserialize(Serializers serializers, Iterable serialized,
+  EventoResponse deserialize(
+      Serializers serializers, Iterable<Object> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     final result = new EventoResponseBuilder();
 
@@ -44,7 +45,7 @@ class _$EventoResponseSerializer
           result.eventos.replace(serializers.deserialize(value,
                   specifiedType:
                       const FullType(BuiltList, const [const FullType(Evento)]))
-              as BuiltList);
+              as BuiltList<dynamic>);
           break;
       }
     }
@@ -57,7 +58,7 @@ class _$EventoResponse extends EventoResponse {
   @override
   final BuiltList<Evento> eventos;
 
-  factory _$EventoResponse([void updates(EventoResponseBuilder b)]) =>
+  factory _$EventoResponse([void Function(EventoResponseBuilder) updates]) =>
       (new EventoResponseBuilder()..update(updates)).build();
 
   _$EventoResponse._({this.eventos}) : super._() {
@@ -67,7 +68,7 @@ class _$EventoResponse extends EventoResponse {
   }
 
   @override
-  EventoResponse rebuild(void updates(EventoResponseBuilder b)) =>
+  EventoResponse rebuild(void Function(EventoResponseBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
@@ -121,7 +122,7 @@ class EventoResponseBuilder
   }
 
   @override
-  void update(void updates(EventoResponseBuilder b)) {
+  void update(void Function(EventoResponseBuilder) updates) {
     if (updates != null) updates(this);
   }
 

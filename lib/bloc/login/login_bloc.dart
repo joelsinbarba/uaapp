@@ -5,11 +5,9 @@ import 'package:uaapp/network/repository.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:uaapp/ui/library.dart';
 
-
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
   final SearchRepository _searchRepository;
-final _storage = new FlutterSecureStorage();
-
+  final _storage = new FlutterSecureStorage();
 
   LoginBloc(this._searchRepository) : super();
 
@@ -22,7 +20,7 @@ final _storage = new FlutterSecureStorage();
       ..password = password));
   }
 
-  void onShowUp(){
+  void onShowUp() {
     dispatch(LoginShowUp());
   }
 
@@ -31,7 +29,7 @@ final _storage = new FlutterSecureStorage();
       LoginState currentState, LoginEvent event) async* {
     if (event is LoginInitiated) {
       yield* mapSearchInitiated(event);
-    } else if(event is LoginShowUp){
+    } else if (event is LoginShowUp) {
       yield LoginState.initial();
     }
   }
@@ -43,20 +41,21 @@ final _storage = new FlutterSecureStorage();
       final searchResult =
           await _searchRepository.login(event.user, event.password);
 
-      if (searchResult.persona_id == null) {
+      print(searchResult);
+
+      if (searchResult.accessId == null) {
         print('NO USER, TRY AGAIN');
         // _showDialog();
         yield LoginState.fail();
       } else {
-        print('USER IS: ' + searchResult.persona_id.toString());
-        globalUserId = searchResult.persona_id.toString();
-        await _storage.write(key: 'userId', value: searchResult.persona_id.toString());
+        print('USER IS: ' + searchResult.accessId.toString());
+        globalUserId = searchResult.accessId.toString();
+        await _storage.write(
+            key: 'userId', value: searchResult.accessId.toString());
         yield LoginState.success(searchResult);
       }
     } on NoSearchResultExeption catch (e) {
       yield LoginState.loading();
     }
   }
-
-  
 }

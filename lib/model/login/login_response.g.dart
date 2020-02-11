@@ -16,7 +16,7 @@ class _$LoginResponseSerializer implements StructuredSerializer<LoginResponse> {
   final String wireName = 'LoginResponse';
 
   @override
-  Iterable serialize(Serializers serializers, LoginResponse object,
+  Iterable<Object> serialize(Serializers serializers, LoginResponse object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object>[];
     if (object.username != null) {
@@ -43,18 +43,18 @@ class _$LoginResponseSerializer implements StructuredSerializer<LoginResponse> {
         ..add(serializers.serialize(object.email,
             specifiedType: const FullType(String)));
     }
-    if (object.persona_id != null) {
+    if (object.accessId != null) {
       result
-        ..add('persona_id')
-        ..add(serializers.serialize(object.persona_id,
-            specifiedType: const FullType(int)));
+        ..add('access_ID_')
+        ..add(serializers.serialize(object.accessId,
+            specifiedType: const FullType(String)));
     }
-
     return result;
   }
 
   @override
-  LoginResponse deserialize(Serializers serializers, Iterable serialized,
+  LoginResponse deserialize(
+      Serializers serializers, Iterable<Object> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     final result = new LoginResponseBuilder();
 
@@ -80,9 +80,9 @@ class _$LoginResponseSerializer implements StructuredSerializer<LoginResponse> {
           result.email = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
-        case 'persona_id':
-          result.persona_id = serializers.deserialize(value,
-              specifiedType: const FullType(int)) as int;
+        case 'access_ID_':
+          result.accessId = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
           break;
       }
     }
@@ -101,21 +101,17 @@ class _$LoginResponse extends LoginResponse {
   @override
   final String email;
   @override
-  final int persona_id;
+  final String accessId;
 
-  factory _$LoginResponse([void updates(LoginResponseBuilder b)]) =>
+  factory _$LoginResponse([void Function(LoginResponseBuilder) updates]) =>
       (new LoginResponseBuilder()..update(updates)).build();
 
   _$LoginResponse._(
-      {this.username,
-      this.firstname,
-      this.lastname,
-      this.email,
-      this.persona_id})
+      {this.username, this.firstname, this.lastname, this.email, this.accessId})
       : super._();
 
   @override
-  LoginResponse rebuild(void updates(LoginResponseBuilder b)) =>
+  LoginResponse rebuild(void Function(LoginResponseBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
@@ -129,7 +125,7 @@ class _$LoginResponse extends LoginResponse {
         firstname == other.firstname &&
         lastname == other.lastname &&
         email == other.email &&
-        persona_id == other.persona_id;
+        accessId == other.accessId;
   }
 
   @override
@@ -139,7 +135,7 @@ class _$LoginResponse extends LoginResponse {
             $jc($jc($jc(0, username.hashCode), firstname.hashCode),
                 lastname.hashCode),
             email.hashCode),
-        persona_id.hashCode));
+        accessId.hashCode));
   }
 
   @override
@@ -149,7 +145,7 @@ class _$LoginResponse extends LoginResponse {
           ..add('firstname', firstname)
           ..add('lastname', lastname)
           ..add('email', email)
-          ..add('persona_id', persona_id))
+          ..add('accessId', accessId))
         .toString();
   }
 }
@@ -174,9 +170,9 @@ class LoginResponseBuilder
   String get email => _$this._email;
   set email(String email) => _$this._email = email;
 
-  int _persona_id;
-  int get persona_id => _$this._persona_id;
-  set persona_id(int persona_id) => _$this._persona_id = persona_id;
+  String _accessId;
+  String get accessId => _$this._accessId;
+  set accessId(String accessId) => _$this._accessId = accessId;
 
   LoginResponseBuilder();
 
@@ -186,7 +182,7 @@ class LoginResponseBuilder
       _firstname = _$v.firstname;
       _lastname = _$v.lastname;
       _email = _$v.email;
-      _persona_id = _$v.persona_id;
+      _accessId = _$v.accessId;
       _$v = null;
     }
     return this;
@@ -201,7 +197,7 @@ class LoginResponseBuilder
   }
 
   @override
-  void update(void updates(LoginResponseBuilder b)) {
+  void update(void Function(LoginResponseBuilder) updates) {
     if (updates != null) updates(this);
   }
 
@@ -213,7 +209,7 @@ class LoginResponseBuilder
             firstname: firstname,
             lastname: lastname,
             email: email,
-            persona_id: persona_id);
+            accessId: accessId);
     replace(_$result);
     return _$result;
   }

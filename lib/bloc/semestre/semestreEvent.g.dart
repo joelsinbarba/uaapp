@@ -7,13 +7,14 @@ part of semestreEvent;
 // **************************************************************************
 
 class _$SemestreInitiated extends SemestreInitiated {
-  factory _$SemestreInitiated([void updates(SemestreInitiatedBuilder b)]) =>
+  factory _$SemestreInitiated(
+          [void Function(SemestreInitiatedBuilder) updates]) =>
       (new SemestreInitiatedBuilder()..update(updates)).build();
 
   _$SemestreInitiated._() : super._();
 
   @override
-  SemestreInitiated rebuild(void updates(SemestreInitiatedBuilder b)) =>
+  SemestreInitiated rebuild(void Function(SemestreInitiatedBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
@@ -52,7 +53,7 @@ class SemestreInitiatedBuilder
   }
 
   @override
-  void update(void updates(SemestreInitiatedBuilder b)) {
+  void update(void Function(SemestreInitiatedBuilder) updates) {
     if (updates != null) updates(this);
   }
 
@@ -65,13 +66,14 @@ class SemestreInitiatedBuilder
 }
 
 class _$SemestreLoadMore extends SemestreLoadMore {
-  factory _$SemestreLoadMore([void updates(SemestreLoadMoreBuilder b)]) =>
+  factory _$SemestreLoadMore(
+          [void Function(SemestreLoadMoreBuilder) updates]) =>
       (new SemestreLoadMoreBuilder()..update(updates)).build();
 
   _$SemestreLoadMore._() : super._();
 
   @override
-  SemestreLoadMore rebuild(void updates(SemestreLoadMoreBuilder b)) =>
+  SemestreLoadMore rebuild(void Function(SemestreLoadMoreBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
@@ -110,7 +112,7 @@ class SemestreLoadMoreBuilder
   }
 
   @override
-  void update(void updates(SemestreLoadMoreBuilder b)) {
+  void update(void Function(SemestreLoadMoreBuilder) updates) {
     if (updates != null) updates(this);
   }
 

@@ -15,7 +15,7 @@ class _$ExamenSerializer implements StructuredSerializer<Examen> {
   final String wireName = 'Examen';
 
   @override
-  Iterable serialize(Serializers serializers, Examen object,
+  Iterable<Object> serialize(Serializers serializers, Examen object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object>[
       'parcial',
@@ -30,7 +30,7 @@ class _$ExamenSerializer implements StructuredSerializer<Examen> {
   }
 
   @override
-  Examen deserialize(Serializers serializers, Iterable serialized,
+  Examen deserialize(Serializers serializers, Iterable<Object> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     final result = new ExamenBuilder();
 
@@ -61,7 +61,7 @@ class _$Examen extends Examen {
   @override
   final String fechaExamen;
 
-  factory _$Examen([void updates(ExamenBuilder b)]) =>
+  factory _$Examen([void Function(ExamenBuilder) updates]) =>
       (new ExamenBuilder()..update(updates)).build();
 
   _$Examen._({this.parcial, this.fechaExamen}) : super._() {
@@ -74,7 +74,7 @@ class _$Examen extends Examen {
   }
 
   @override
-  Examen rebuild(void updates(ExamenBuilder b)) =>
+  Examen rebuild(void Function(ExamenBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
@@ -133,7 +133,7 @@ class ExamenBuilder implements Builder<Examen, ExamenBuilder> {
   }
 
   @override
-  void update(void updates(ExamenBuilder b)) {
+  void update(void Function(ExamenBuilder) updates) {
     if (updates != null) updates(this);
   }
 

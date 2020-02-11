@@ -14,7 +14,7 @@ class _$EventoState extends EventoState {
   @override
   final List<Evento> response;
 
-  factory _$EventoState([void updates(EventoStateBuilder b)]) =>
+  factory _$EventoState([void Function(EventoStateBuilder) updates]) =>
       (new EventoStateBuilder()..update(updates)).build();
 
   _$EventoState._({this.isLoading, this.error, this.response}) : super._() {
@@ -27,7 +27,7 @@ class _$EventoState extends EventoState {
   }
 
   @override
-  EventoState rebuild(void updates(EventoStateBuilder b)) =>
+  EventoState rebuild(void Function(EventoStateBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
@@ -94,7 +94,7 @@ class EventoStateBuilder implements Builder<EventoState, EventoStateBuilder> {
   }
 
   @override
-  void update(void updates(EventoStateBuilder b)) {
+  void update(void Function(EventoStateBuilder) updates) {
     if (updates != null) updates(this);
   }
 
