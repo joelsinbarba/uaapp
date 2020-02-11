@@ -6,6 +6,8 @@ App developed to learn about Flutter. Chose to make an app for my university (Un
 
 Developed January-February 2018.
 
+This is basically an application that allows you to quickly check your status on all your classes.
+
 Most of the API calls were "hacked" from an earlier API version, so most features no longer work.
 You will also need student credentials to log in.
 
@@ -14,7 +16,7 @@ You will also need student credentials to log in.
 - Polished UI
 - Authentication
 - Get student's information
-- Get today's events (e.g. You a math class today at 19:00)
+- Get student's class schedules
 - Get student's subjects by semester
 - Get student's scores by subject
 - Read news
